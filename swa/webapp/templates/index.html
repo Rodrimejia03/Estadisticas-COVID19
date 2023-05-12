@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Estadísticas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="flex w-screen h-screen overflow-x-hidden overflow-y-hidden">
+        <!-- Sidebar menu -->
+        <div class="w-80 m-2 p-2 bg-[#788199] rounded-lg flex flex-col items-center">
+            <!-- Logo -->
+            <div class="w-full py-2 flex justify-center items-center basis-2/12">
+                <img src="../images/logo.webp" alt="Logo">
+            </div>
+            <!-- Navigation items -->
+            <div class="w-full basis-8/12 flex items-center">
+                <ul class="space-y-4">
+                    <li class="p-2 w-64 rounded-md text-xl text-center font-bold hover:bg-[#666f88] duration-300">2020</li>
+                    <li class="p-2 w-64 rounded-md text-xl text-center font-bold hover:bg-[#666f88] duration-300">2021</li>
+                    <li class="p-2 w-64 rounded-md text-xl text-center font-bold hover:bg-[#666f88] duration-300">2022</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="w-full h-12/12 m-2 p-2 rounded-lg bg-[#b5bac9]">
+            <header>
+                <div class="my-4">
+                    <h1 class="text-center font-bold text-4xl">Sistema de Estadísticas - Afectación por
+                        <span class="uppercase text-emerald-600">covid-19</span>
+                    </h1>
+                </div>
+            </header>
+
+            <main>
+                <!-- Graphics-->
+                <div class="my-20 p-3 flex space-x-6">
+                    <div class="p-4 flex flex-col justify-center basis-1/3">
+                        <canvas id="myChart"></canvas>
+                        <span class="mt-2 text-center font-semibold text-base">Estudiantes inscritos por semestre en el año 2020</span>
+                    </div>
+
+                    <div class="p-4 flex flex-col justify-center basis-1/3">
+                        <canvas id="myChart1"></canvas>
+                        <span class="mt-2 text-center font-semibold text-base">Porcentaje de estudiantes desertados en la Universidad</span>
+                    </div>
+
+                    <div class="p-4 flex flex-col justify-center basis-1/3">
+                        <canvas id="myChart2"></canvas>
+                        <span class="mt-2 text-center font-semibold text-base">Comportamiento de ingreso de aspirantes a la UES</span>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        const ctx1 = document.getElementById('myChart1');
+        const ctx2 = document.getElementById('myChart2');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Semestre 1', 'Semestre 2'],
+                datasets: [{
+                    label: 'Estudiantes inscritos' ,
+                    data: [1097, 478],
+                    backgroundColor: ['#0d9488', '#0f766e'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        });
+
+        new Chart(ctx1, {
+            type: 'pie',
+            data: {
+                labels: ['2020', '2021', '2022'],
+                datasets: [{
+                    label: 'Estudiantes desertados',
+                    data: [300, 50, 100],
+                    backgroundColor: [
+                        '#0d9488',
+                        '#0f766e',
+                        '#115e59'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+        });
+
+        const xValues = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio']
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: xValues,
+                datasets: [
+                    {
+                        label: 'Semestre 1',
+                        data: [1860, 1740, 1700, 1400, 1070, 1110],
+                        backgroundColor: '#0f766e',
+                        borderColor: '#0f766e',
+                        fill: false
+                    }, {
+                        label: 'Semestre 2',
+                        data: [1500, 1850, 1300, 1600, 1000, 700],
+                        backgroundColor: '#115e59',
+                        borderColor: '#115e59',
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                legend: {
+                    display: false
+                }
+            },
+        });
+    </script>
+</body>
+</html>

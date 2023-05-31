@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Gestion de datos - Afectacion covid-19 {% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <div class="flex flex-col w-screen h-screen overflow-x-hidden overflow-y-hidden bg-[#e6e8eb]">
+        <div class="w-full h-max mt-10 flex justify-center">
+            <h1 class="p-5 rounded-md text-black font-bold text-center text-5xl">Gestion de Datos
+                de Estadisticas.</h2>
+        </div>
+        <div class="flex w-full h-min mt-8 justify-center">
+            <form method="post" class="flex w-max h-min p-3 bg-white rounded-md">
+                {% csrf_token %}
+                <button type="submit" formaction="Agregarest"
+                    class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-full">Agregar
+                    Estadistica</button>
+                <button type="submit" formaction="Modificarest"
+                    class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-full">Modificar
+                    Estadistica</button>
+                <button type="submit" formaction="Eliminarest"
+                    class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-full">Eliminar
+                    Estadistica</button>
+            </form>
+        </div>
+        <div class="w-full mt-10">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    </div>
+</body>
+
+</html>

@@ -12,6 +12,17 @@ def administrator(request):
 
 def administrator_AgGrf(request):
     unis = Universidad.objects.all()
+    if request.method == 'POST':
+        temp_estadistica = Estadistica()
+        temp_estadistica.anio_dato = request.POST.get('anio_input')
+        if not Estadistica.objects.filter(anio_dato=temp_estadistica.anio_dato, tipoGrafico=temp_estadistica.tipoGrafico):
+           temp_estadistica.tipoGrafico = request.POST.get('tipoGrafico_input')
+           temp_estadistica.idUniversidad = request.POST.get('universidad_inpu')
+           temp_estadistica.save()
+           messages.success(request, 'Datos guardados correctamente')
+        else:
+            messages.error(request, 'Error al guardar los datos.')
+        
     return render(request, 'administracion/CRUD_Grafico/Agregargrf.html', {'unis': unis})
 
 def administrator_ModGrf(request):
@@ -30,9 +41,9 @@ def administrator_AgUni(request):
             temp_uni.numGraduados = request.POST.get('graduados_input')
             temp_uni.numDesertados = request.POST.get('desertados_input')
             temp_uni.save()
-            messages.success(request, 'Datos guardados correctamente')
+            messages.success(request, 'Datos guardados correctamente.')
         else:
-            messages.error(request, 'Este es un mensaje de error.')
+            messages.error(request, 'Error al guardar los datos.')
     return render(request, 'administracion/CRUD_Universidad/Agregaruni.html')
 
 def administrator_ModUni(request):

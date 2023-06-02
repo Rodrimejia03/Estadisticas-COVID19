@@ -11,7 +11,7 @@ class Universidad(models.Model):
 class Administrador(models.Model):
     idAdmin = models.AutoField(primary_key=True)
     email = models.CharField(max_length=50)
-    contrasenia = models.CharField(max_length=50)
+    contrasenia = models.CharField(max_length=120)
 
 class Estadistica(models.Model):
     idEstadistica = models.AutoField(primary_key=True)

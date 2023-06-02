@@ -12,7 +12,8 @@
         <div class="w-80 m-2 p-2 bg-[#111827] rounded-lg flex flex-col items-center">
             <!-- Logo -->
             <div class="w-full py-2 flex justify-center items-center basis-2/12">
-                <img src="../images/logo.webp" alt="Logo">
+                {% load static %}
+                <img src="{% static 'webapp/logo_Proyecto.png' %}" alt="Logo">
             </div>
             <!-- Navigation items -->
             <div class="w-full basis-8/12 flex items-center">
@@ -66,7 +67,7 @@
             data: {
                 labels: ['Semestre 1', 'Semestre 2'],
                 datasets: [{
-                    label: 'Estudiantes inscritos' ,
+                    label: 'Estudiantes inscritos',
                     data: [1097, 478],
                     backgroundColor: ['#0d9488', '#0f766e'],
                     borderWidth: 1

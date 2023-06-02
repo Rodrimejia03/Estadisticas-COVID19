@@ -1,0 +1,18 @@
+{% extends '../administracion/base_admin.html' %}
+{% block content %}
+<div class="w-full h-full flex flex-row flex-wrap justify-around">
+        <div class="basis-2/5 h-2/5 p-3 m-3 bg-white rounded-xl shadow-sm shadow-gray-500">
+            <p class="text-black text-center font-semibold">Número de Universidades: </p>
+            <h1 class="text-black text-center font-bold text-5xl mt-10">{{Universidad}}</h1>
+        </div>
+        <div class="basis-2/5 h-2/5 p-3 m-3 bg-white rounded-xl shadow-sm shadow-gray-500">
+            <p class="text-black text-center font-semibold text-2lg">Número de Graficos:  </p>
+            <h1 class="text-black text-center font-bold text-5xl mt-10">{{Grafico}}</h1>
+        </div>
+        <div class="basis-2/5 h-2/5 p-3 m-3 bg-white rounded-xl shadow-sm shadow-gray-500"> 
+            <p class="text-black text-center font-semibold text-2lg">Número de Administradores: </p>
+            <h1 class="text-black text-center font-bold text-5xl mt-10">{{Administrador}}</h1>
+        </div>
+
+</div>
+{% endblock %}

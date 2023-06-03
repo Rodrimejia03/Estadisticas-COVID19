@@ -1,6 +1,9 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render, resolve_url
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from webapp.authentication.auth_backend import AdministradorAuthBackend
 from .utils import *
 from .models import *
 
@@ -8,12 +11,29 @@ from .models import *
 def welcome(request):
     return render(request, 'index.html')
 
-def login(request):
+def login_Admin(request):
+    if request.method == 'POST' and request.POST.get('login_ad') == 'login_1':
+        email = request.POST.get('email_admin')
+        password = request.POST.get('password_admin')
+        next_url = request.POST.get('next') 
+    
+        user = AdministradorAuthBackend().authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('gestionAdmin')
+        else:
+             return render(request, 'login.html', {'error': 'Datos invalidos'})
     return render(request, 'login.html')
 
-def administrator(request):
-    return render(request, 'administracion/admin_general.html', getCountDatos())
+def logout_Admin(request):
+    logout(request)
+    return redirect('inicio')
 
+@login_required
+def administrator(request):
+     return render(request, 'administracion/admin_general.html', getCountDatos())
+
+@login_required
 def administrator_AgGrf(request):
     unis = Universidad.objects.all()
     if request.method == 'POST' and request.POST.get('form_id') == 'form_AgregarGrf':
@@ -33,6 +53,7 @@ def administrator_AgGrf(request):
         
     return render(request, 'administracion/CRUD_Grafico/Agregargrf.html', {'unis': unis})
 
+@login_required
 def administrator_ModGrf(request):
     grafis = Estadistica.objects.all()
     unis = Universidad.objects.all()
@@ -63,9 +84,11 @@ def administrator_ModGrf(request):
             response = render(request, 'administracion/CRUD_Grafico/Modificargrf.html', {'grafis': grafis, 'unis': unis,'form_deshabilitado': form_deshabilitado})
     return response
 
+@login_required
 def administrator_ElGrf(request):
     return render(request, 'administracion/CRUD_Grafico/Eliminargrf.html')
 
+@login_required
 def administrator_AgUni(request):
     if request.method == 'POST' and request.POST.get('form_id') == 'form_AgregarUni':
         temp_uni = Universidad()
@@ -81,6 +104,7 @@ def administrator_AgUni(request):
             messages.error(request, 'Error al guardar los datos, Ya hay datos existentes')
     return render(request, 'administracion/CRUD_Universidad/Agregaruni.html')
 
+@login_required
 def administrator_ModUni(request):
     unis = Universidad.objects.all()
     form_deshabilitado = 1
@@ -114,5 +138,6 @@ def administrator_ModUni(request):
             response = render(request, 'administracion/CRUD_Universidad/Modificaruni.html', {'unis': unis, 'form_deshabilitado': form_deshabilitado})
     return response
 
+@login_required
 def administrator_ElUni(request):
     return render(request, 'administracion/CRUD_Universidad/Eliminaruni.html')

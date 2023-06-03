@@ -44,7 +44,16 @@
                     </button>
             </form>
         </div>
+        <div class="flex flex-row w-full h-full">
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" formaction="/logout_Admin/"
+                        class="bg-cyan-500 m-2 p-2 hover:bg-cyan-700 text-white font-bold py-2 rounded-full">Cerrar Sesión
+                        </button>
+            </form>
+        </div>
     </div>
+    
         <div class="w-3/6 h-3/4 items-center">
             {% block content %}
             {% endblock %}

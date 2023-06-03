@@ -110,6 +110,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'webapp.Administrador'
+
+AUTHENTICATION_BACKENDS = [
+    'webapp.authentication.auth_backend.AdministradorAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_URL = '/login_Admin'
+LOGIN_REDIRECT_URL = '/gestionAdmin/'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

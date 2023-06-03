@@ -6,3 +6,4 @@ class WebAppConfig(AppConfig):
 
     def ready(self):
         import webapp.signals 
+    

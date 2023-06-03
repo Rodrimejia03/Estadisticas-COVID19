@@ -17,7 +17,7 @@
             <h1 class="p-4 rounded-md text-black font-bold text-center text-3xl">Area de administración de la aplicación</h2>
         </div>
         <div class="flex w-full h-min mt-8 justify-center">
-            <form method="GET" class="flex flex-col basis-1/2 p-3 shadow-sm shadow-gray-500">
+            <form method="POST" class="flex flex-col basis-1/2 p-3 shadow-sm shadow-gray-500">
                 {% csrf_token %}
                 <p class="text text-center text-black font-semibold m-2">Universidades:</p>
                 <button type="submit" formaction="Agregaruni"
@@ -30,7 +30,7 @@
                     class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 rounded-full">Eliminar
                     </button>
             </form>
-            <form method="GET" class="flex flex-col basis-1/2 p-3 shadow-sm shadow-gray-500">
+            <form method="POST" class="flex flex-col basis-1/2 p-3 shadow-sm shadow-gray-500">
                 {% csrf_token %}
                 <p class="text text-center text-black font-semibold m-2">Graficos:</p>
                 <button type="submit" formaction="Agregargrf"

@@ -3,8 +3,9 @@
 {% block content %}
 <div class="w-full p-5 bg-white rounded-xl">
     <h2 class="text-black text-center font-bold text-3xl">Agregar Universidad</h2>
-    <form disabled method="POST" class="mt-10 items-center flex flex-wrap">
+    <form method="POST" class="mt-10 items-center flex flex-wrap">
         {% csrf_token %}
+        <input type="hidden" name="form_id" value="form_AgregarUni">
         <div class="flex flex-col justify-center items-end w-5/12">
             <label for="nombreU_input" class="p-2 mb-3">Nombre de la Universidad: </label>
             <label for="anio_periodo_input" class="p-2 mb-3">Año de Periodo: </label>

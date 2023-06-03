@@ -1,5 +1,109 @@
 {% extends 'administracion/base_admin.html' %}
 {% block title %}- Modificar Grafico{% endblock %}
 {% block content %}
-<h2 class="text-center text-4xl">un comentario random para modificar</h2>
+<div class="w-full p-5 bg-white rounded-xl">
+    <h2 class="text-black text-center font-bold text-3xl">Modificar Grafico</h2>
+    <form id="form_1" method="POST" class="flex flex-col items-center">
+        {% csrf_token %}
+        <input type="hidden" name="form_id" value="form_BuscarGrf">
+        <div class="mt-2 block">
+            <label for="buscarGrf_input">Selecciona el grafico que deseas modificar:</label>
+        </div>
+        <div class="flex w-full flex-row mt-2">
+            <div class="flex w-2/3 justify-end">
+                <select name="buscarGrf_input" required minlength="1"
+                    class="shadow border border-black-500 w-68 rounded py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+                    <option  class="text-center" value="" selected>elige una opcion</option>
+                    {% if grafis %}
+                    {% for grafi in grafis %}
+                    <option class="text-center" value="{{grafi.idEstadistica}}">
+                        {{grafi.anio_dato}}-{{grafi.tipoGrafico}} ({{grafi.idUniversidad.nombreU}}-{{grafi.idUniversidad.anio_periodo}})
+                    </option>
+                    {% endfor %}
+                    {% else %}
+                    <option disabled>No hay elementos disponibles</option>
+                    {% endif %}
+                </select>
+            </div>
+            <div class="ml-2 flex w-1/3">
+                <button type="submit" title="Buscar" name="buscar_grf_btn"
+                    class=" w-20 h-min bg-cyan-500 p-2 hover:bg-cyan-700 text-white font-bold rounded-md">Buscar</button>
+            </div>
+        </div>
+    </form>
+
+    <form id="form_2" method="POST" class="mt-3 items-center flex flex-wrap">
+        {% csrf_token %}
+        <input type="hidden" name="form_id" value="form_ModGrf">
+        <input type="hidden" name="id-Estadistica" value="{{id_Grf_l}}">
+        <div class="flex flex-col items-end w-4/12">
+            <label for="anio_input" class="p-2 mb-3">Año del dato:</label>
+            <label for="tipoGrafico_input" class="p-2 mb-3">Tipo de Grafico: </label>
+            <label for="universidad_input" class="p-2 mb-3">Universidad: </label>
+        </div>
+        <div class="flex flex-col justify-center w-6/12">
+            <input value="{{form_modificar.anio_dato.value}}" required type="number" min="2019" max="2023" name="anio_input"
+                class="shadow appearance-none border border-black-500 rounded py-2 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+            <select id="select_f" required minlength="2" name="tipoGrafico_input"
+                class="shadow border border-black-500 rounded py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Elige una opcion</option>
+                <option value="Barras">Barras</option>
+                <option value="Pastel">Pastel</option>
+            </select>
+            <select id="select_f2" required minlength="1" name="universidad_input"
+                class="shadow border border-black-500 w-68 rounded py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="" selected>Elige una opcion</option>
+                {% if unis %}
+                {% for uni in unis %}
+                {% if uni.idUniversidad == form_modificar.idUniversidad.value %}
+                <option selected value="{{uni.idUniversidad}}">{{uni.nombreU}} ({{uni.anio_periodo}})</option>
+                {% else %}
+                <option value="{{uni.idUniversidad}}">{{uni.nombreU}} ({{uni.anio_periodo}})</option>
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                <option disabled>No hay elementos disponibles</option>
+                {% endif %}
+            </select>
+        </div>
+        <div class="flex flex-row w-full mt-3 justify-around">
+            <button type="submit" title="Agregar" name="Agregar_grf_btn"
+                class="bg-cyan-500 p-2 hover:bg-cyan-700 text-white font-bold rounded-md">Agregar</button>
+        </div>
+    </form>
+    <form method="post">
+        {% csrf_token %}
+        <button formaction="/gestionAdmin/" type="submit" title="Regresar" name="cancelar_est_btn"
+            class="bg-red-600 p-2 hover:bg-red-800 text-white font-bold rounded-md">Regresar</button>
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    {%endif%}
+    </ul>
+</div>
+<script>
+    var selectItem = document.getElementById('select_f');
+    selectItem.value = "{{form_modificar.tipoGrafico.value}}";
+
+    function formulario_desHabilitado(elemento) {
+           var form = document.getElementById("form_2");
+           var elements = form.elements;
+           if (elemento == 1) {
+               for (var i = 0; i < elements.length; i++) {
+                   elements[i].disabled = true;
+               }
+           }
+           else if (elemento == 0) {
+               for (var i = 0; i < elements.length; i++) {
+                   elements[i].disabled = false;
+               }
+           }
+       }
+       window.onload = function() {
+           formulario_desHabilitado(parseInt("{{form_deshabilitado}}"));
+       };
+   </script>
 {% endblock %}

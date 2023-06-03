@@ -1,5 +1,11 @@
-from django.forms import ModelForm, NumberInput
+from django import forms
 from .models import *
+
+class UniversidadForm(forms.ModelForm):
+    class Meta:
+        model = Universidad
+        fields = fields = ("anio_periodo", "nombreU", "numDesertados", "numGraduados", "numInscritos")
+        # Aquí se especifican los campos que se mostrarán en el formulario
 
 def getCountDatos():
     countUni = Universidad.objects.count()

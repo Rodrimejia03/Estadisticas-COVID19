@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -85,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Afectacion_db',
         'USER': 'postgres',
-        'PASSWORD': 'mm20191',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432', 
     }

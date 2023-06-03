@@ -1,25 +1,30 @@
-from django.shortcuts import redirect, render, resolve_url
+from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import  login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from webapp.authentication.auth_backend import AdministradorAuthBackend
 from .utils import *
 from .models import *
 
+Admin = Administrador()
+
 # Create your views here.
 def welcome(request):
-    return render(request, 'index.html')
+    temp_anio = 2020
+    unis = Universidad.objects.get(idUniversidad=1)
+    return render(request, 'index.html', {'unis': unis})
 
 def login_Admin(request):
     if request.method == 'POST' and request.POST.get('login_ad') == 'login_1':
-        email = request.POST.get('email_admin')
+        email1 = request.POST.get('email_admin')
         password = request.POST.get('password_admin')
         next_url = request.POST.get('next') 
     
-        user = AdministradorAuthBackend().authenticate(request, email=email, password=password)
+        user = AdministradorAuthBackend().authenticate(request, email=email1, password=password)
         if user is not None:
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            Admin = Administrador.objects.get(email=email1)
             return redirect('gestionAdmin')
         else:
              return render(request, 'login.html', {'error': 'Datos invalidos'})
@@ -31,7 +36,8 @@ def logout_Admin(request):
 
 @login_required
 def administrator(request):
-     return render(request, 'administracion/admin_general.html', getCountDatos())
+     
+     return render(request, 'administracion/admin_general.html', {'datos_generales': getCountDatos() , 'id_Admin': Admin})
 
 @login_required
 def administrator_AgGrf(request):
@@ -86,7 +92,8 @@ def administrator_ModGrf(request):
 
 @login_required
 def administrator_ElGrf(request):
-    return render(request, 'administracion/CRUD_Grafico/Eliminargrf.html')
+    grafis = Estadistica.objects.all()
+    return render(request, 'administracion/CRUD_Grafico/Eliminargrf.html', {'grafis': grafis})
 
 @login_required
 def administrator_AgUni(request):

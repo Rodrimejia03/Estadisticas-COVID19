@@ -2,6 +2,22 @@
 {% block title %}- Eliminar Grafico{% endblock %}
 {% block content %}
 <div class="w-full p-5 bg-white rounded-xl">
-    <h2 class="text-black text-center font-bold text-3xl">Agregar Grafico</h2>
+    <h2 class="text-black text-center font-bold text-3xl">Eliminar Grafico</h2>
+    <div class="flex w-full">
+        <form method="POST">
+            <table class="table-auto">
+                <thead class="text-xs text-white bg-cyan-700">
+                    <tr>
+                        <th class="p-2">Año</th>
+                        <th class="p-2">Tipo de Grafico</th>
+                        <th class="p-2">Universidad</th>
+                    </tr>
+                </thead>
+                {%if grafis %}
+                
+                {%endif%}
+            </table>
+        </form>
+    </div>
 </div>
 {% endblock %}

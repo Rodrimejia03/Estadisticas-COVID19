@@ -20,6 +20,7 @@ from webapp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome),
+    path('login/', login),
     path('gestionAdmin/', administrator, name='gestionAdmin'),
     path('gestionAdmin/Agregargrf', administrator_AgGrf),
     path('gestionAdmin/Modificargrf', administrator_ModGrf),

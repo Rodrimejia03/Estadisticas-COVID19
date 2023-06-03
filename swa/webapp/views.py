@@ -8,6 +8,9 @@ from .models import *
 def welcome(request):
     return render(request, 'index.html')
 
+def login(request):
+    return render(request, 'login.html')
+
 def administrator(request):
     return render(request, 'administracion/admin_general.html', getCountDatos())
 

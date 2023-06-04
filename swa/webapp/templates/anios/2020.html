@@ -1,0 +1,25 @@
+{% extends '../index.html' %}
+{% block content %}
+<div class="flex flex-col">
+    <div>
+        <h2 class="text-2xl text-black text-center">Año 2020</h2>
+    </div>
+
+    <div class="flex flex-col items-center justify-center xl:items-stretch space-y-2 xl:items-auto xl:space-y-0 xl:flex-row xl:space-x-2 xl:space-x-4 2xl:space-x-6">
+        <div class="w-full md:w-96 xl:w-1/3 p-4 flex flex-col justify-center flex-initial w-1/3 bg-white rounded-md drop-shadow-xl shadow-black">
+            <canvas id="myChart"></canvas>
+            <span class="text-center font-semibold text-base">Estudiantes inscritos por semestre</span>
+        </div>
+
+        <div class="w-full md:w-96 xl:w-1/3 p-4 xl:p-10 2xl:p-16 flex flex-col justify-center flex-initial w-1/3 bg-white rounded-md drop-shadow-xl shadow-black">
+            <canvas id="myChart1"></canvas>
+            <span class="mt-5 text-center font-semibold text-base">Estudiantes desertados</span>
+        </div>
+
+        <div class="w-full md:w-96 xl:w-1/3 p-4 flex flex-col justify-center flex-initial w-1/3 bg-white rounded-md drop-shadow-xl shadow-black">
+            <canvas id="myChart2"></canvas>
+            <span class="text-center font-semibold text-base">Ingreso de aspirantes a la Universidad</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

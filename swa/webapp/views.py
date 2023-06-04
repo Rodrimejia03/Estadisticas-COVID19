@@ -7,12 +7,18 @@ from webapp.authentication.auth_backend import AdministradorAuthBackend
 from .utils import *
 from .models import *
 
-Admin = Administrador()
-
 # Create your views here.
 def welcome(request):
-    temp_anio = 2020
     return render(request, 'index.html')
+
+def year2020(request):
+    return render(request, 'anios/2020.html')
+
+def year2021(request):
+    return render(request, 'anios/2021.html')
+
+def year2022(request):
+    return render(request, 'anios/2022.html')
 
 def login_Admin(request):
     if request.method == 'POST' and request.POST.get('login_ad') == 'login_1':
@@ -23,7 +29,6 @@ def login_Admin(request):
         user = AdministradorAuthBackend().authenticate(request, email=email1, password=password)
         if user is not None:
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            Admin = Administrador.objects.get(email=email1)
             return redirect('gestionAdmin')
         else:
              return render(request, 'login.html', {'error': 'Datos invalidos'})
@@ -35,7 +40,7 @@ def logout_Admin(request):
 
 @login_required
 def administrator(request):
-     return render(request, 'administracion/Admin_General.html', {'datos_generales': getCountDatos() , 'id_Admin': Admin})
+     return render(request, 'administracion/Admin_General.html', {'datos_generales': getCountDatos()})
 
 @login_required
 def administrator_AgGrf(request):

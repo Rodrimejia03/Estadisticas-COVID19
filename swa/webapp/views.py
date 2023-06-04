@@ -12,8 +12,7 @@ Admin = Administrador()
 # Create your views here.
 def welcome(request):
     temp_anio = 2020
-    unis = Universidad.objects.get(idUniversidad=1)
-    return render(request, 'index.html', {'unis': unis})
+    return render(request, 'index.html')
 
 def login_Admin(request):
     if request.method == 'POST' and request.POST.get('login_ad') == 'login_1':
@@ -36,8 +35,7 @@ def logout_Admin(request):
 
 @login_required
 def administrator(request):
-     
-     return render(request, 'administracion/admin_general.html', {'datos_generales': getCountDatos() , 'id_Admin': Admin})
+     return render(request, 'administracion/Admin_General.html', {'datos_generales': getCountDatos() , 'id_Admin': Admin})
 
 @login_required
 def administrator_AgGrf(request):
@@ -92,7 +90,11 @@ def administrator_ModGrf(request):
 
 @login_required
 def administrator_ElGrf(request):
-    grafis = Estadistica.objects.all()
+    grafis = Estadistica.objects.all().order_by('idEstadistica')
+    if request.method == 'POST' and request.POST.get('form_El') == 'form_Eliminar':
+        temp_id = request.POST.get('btn_Eliminar')
+        grafi_Eliminar = Estadistica.objects.get(idEstadistica=temp_id)
+        grafi_Eliminar.delete()
     return render(request, 'administracion/CRUD_Grafico/Eliminargrf.html', {'grafis': grafis})
 
 @login_required
@@ -147,4 +149,9 @@ def administrator_ModUni(request):
 
 @login_required
 def administrator_ElUni(request):
-    return render(request, 'administracion/CRUD_Universidad/Eliminaruni.html')
+    unis = Universidad.objects.all().order_by('idUniversidad')
+    if request.method == 'POST' and request.POST.get('form_El') == 'form_Eliminar':
+        temp_id = request.POST.get('btn_Eliminar')
+        uni_Eliminar = Universidad.objects.get(idUniversidad=temp_id)
+        uni_Eliminar.delete()
+    return render(request, 'administracion/CRUD_Universidad/Eliminaruni.html', {'unis': unis})

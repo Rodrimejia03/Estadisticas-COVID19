@@ -11,7 +11,6 @@ Admin = Administrador()
 
 # Create your views here.
 def welcome(request):
-    temp_anio = 2020
     return render(request, 'index.html')
 
 def login_Admin(request):

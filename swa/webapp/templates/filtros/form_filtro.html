@@ -1,0 +1,16 @@
+{% extends '../index.html' %}
+{%block content%}
+<form method="POST">
+    {% csrf_token %}
+    <label class="text text-black" for="">Selecciona el tipo de Estudiante a mostrar</label>
+    <select class="shadow border border-black-500 w-68 rounded py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="filtrar_Uni">
+        {% if unis %}
+        {% for uni in unis %}
+        <option value="{{ uni.idUniversidad }}">{{ uni.nombreU }}</option>
+        {% endfor %}
+        {% else %}
+        <option disabled>No hay elementos disponibles</option>
+        {% endif %}
+    </select>
+</form>
+{%endblock%}

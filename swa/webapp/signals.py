@@ -196,10 +196,29 @@ def crear_instancias_Estadistica(sender, **kwargs):
     if sender.name == 'webapp': 
         if not Estadistica.objects.exists():
             instancias = [
-                {'email': 'mm20191@ues.edu.sv', 'contrasenia': 'rodri1234'},
-                {'email': 'rg18081@ues.edu.sv', 'contrasenia': 'marvin1234'},
-                {'email': 'hm19066@ues.edu.sv', 'contrasenia': 'kathe1234'},
+                {'anio_dato': 2020, 'tipoGrafico': 'Barras', 'idUniversidad_id': 1, 'idAdmin_id': 1},
+                {'anio_dato': 2020, 'tipoGrafico': 'Barras', 'idUniversidad_id': 2, 'idAdmin_id': 1},
+                {'anio_dato': 2020, 'tipoGrafico': 'Barras', 'idUniversidad_id': 3, 'idAdmin_id': 1},
+                {'anio_dato': 2021, 'tipoGrafico': 'Barras', 'idUniversidad_id': 10, 'idAdmin_id': 1},
+                {'anio_dato': 2021, 'tipoGrafico': 'Barras', 'idUniversidad_id': 11, 'idAdmin_id': 1},
+                {'anio_dato': 2021, 'tipoGrafico': 'Barras', 'idUniversidad_id': 12, 'idAdmin_id': 1},
+                {'anio_dato': 2022, 'tipoGrafico': 'Barras', 'idUniversidad_id': 19, 'idAdmin_id': 1},
+                {'anio_dato': 2022, 'tipoGrafico': 'Barras', 'idUniversidad_id': 20, 'idAdmin_id': 1},
+                {'anio_dato': 2022, 'tipoGrafico': 'Barras', 'idUniversidad_id': 21, 'idAdmin_id': 1},
+                
+                {'anio_dato': 2020, 'tipoGrafico': 'Pastel', 'idUniversidad_id': 1, 'idAdmin_id': 1},
+                {'anio_dato': 2020, 'tipoGrafico': 'Pastel', 'idUniversidad_id': 2, 'idAdmin_id': 1},
+                {'anio_dato': 2020, 'tipoGrafico': 'Pastel', 'idUniversidad_id': 3, 'idAdmin_id': 1},
+                {'anio_dato': 2021, 'tipoGrafico': 'Pastel', 'idUniversidad_id': 10, 'idAdmin_id': 1},
+                {'anio_dato': 2021, 'tipoGrafico': 'Pastel', 'idUniversidad_id': 11, 'idAdmin_id': 1},
+                {'anio_dato': 2021, 'tipoGrafico': 'Pastel', 'idUniversidad_id': 12, 'idAdmin_id': 1},
+                {'anio_dato': 2022, 'tipoGrafico': 'Pastel', 'idUniversidad_id': 19, 'idAdmin_id': 1},
+                {'anio_dato': 2022, 'tipoGrafico': 'Pastel', 'idUniversidad_id': 20, 'idAdmin_id': 1},
+                {'anio_dato': 2022, 'tipoGrafico': 'Pastel', 'idUniversidad_id': 21, 'idAdmin_id': 1},
+
             ]
             for instancia in instancias:
-                instancia['contrasenia'] = make_password(instancia['contrasenia'])
-                Administrador.objects.create(email=instancia['email'], contrasenia=instancia['contrasenia'])
+                Estadistica.objects.create(anio_dato=instancia['anio_dato'],
+                                           tipoGrafico=instancia['tipoGrafico'], 
+                                           idUniversidad_id=instancia['idUniversidad_id'],
+                                           idAdmin_id=instancia['idAdmin_id'])

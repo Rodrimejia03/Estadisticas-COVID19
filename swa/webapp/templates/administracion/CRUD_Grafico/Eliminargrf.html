@@ -6,16 +6,23 @@
     <div class="flex w-full">
         <form method="POST">
             <table class="table-auto">
-                <thead class="text-xs text-white bg-cyan-700">
+                <thead class="text-md text-white bg-cyan-700">
                     <tr>
                         <th class="p-2">Año</th>
                         <th class="p-2">Tipo de Grafico</th>
                         <th class="p-2">Universidad</th>
                     </tr>
                 </thead>
-                {%if grafis %}
-                
-                {%endif%}
+                <tbody>
+                    {%if grafis %}
+                    {%for grafi in grafis %}
+                    <td>{{ grafi.anio_dato }}</td>
+                    <td>{{ grafi.tipoGrafico }}</td>
+                    <td>{{ uni.idUniversidad.nombreU }}</td>
+                    {%endfor%}
+                    {%endif%}
+                </tbody>
+               
             </table>
         </form>
     </div>

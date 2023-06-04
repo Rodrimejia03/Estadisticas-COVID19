@@ -1,6 +1,45 @@
 {% extends 'administracion/base_admin.html' %}
 {% block title %}- Eliminar Grafico{% endblock %}
 {% block content %}
-
-<h2 class="text-center text-4xl">un comentario random para eliminar</h2>
+<div class="w-full p-5 bg-white rounded-xl">
+    <h2 class="text-black text-center font-bold text-3xl">Eliminar Grafico</h2>
+    <form method="post" class="flex justify-center mb-3 mt-2">
+        {% csrf_token %}
+        <button formaction="/gestionAdmin/" type="submit" title="Regresar" name="cancelar_est_btn"
+            class="bg-red-600 p-2 hover:bg-red-800 text-white font-bold rounded-md">Regresar</button>
+    </form>
+    <div class="flex w-full justify-center">
+        
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" value="form_Eliminar" name="form_El">
+            <table class="table-auto w-full text-center">
+                <thead class="text-md text-white bg-cyan-700">
+                    <tr>
+                        <th class="p-2">Año</th>
+                        <th class="p-2">Tipo de Grafico</th>
+                        <th class="p-2">Universidad</th>
+                        <th class="p-2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%if grafis %}
+                    {%for grafi in grafis %}
+                    <tr>
+                        <td>{{ grafi.anio_dato }}</td>
+                        <td>{{ grafi.tipoGrafico }}</td>
+                        <td>{{ grafi.idUniversidad.nombreU }}</td>
+                        <td>
+                            <button value="{{grafi.idEstadistica}}" name="btn_Eliminar" class=" w-10 h-min bg-red-500 p-2 hover:bg-red-700 text-white font-bold rounded-md">X</button>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                    {%else%}
+                    <td>No hay mas datos</td>
+                    {%endif%}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
 {% endblock %}

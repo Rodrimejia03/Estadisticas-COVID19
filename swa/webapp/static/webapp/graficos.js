@@ -5,11 +5,11 @@ const ctx2 = document.getElementById('myChart2');
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Semestre 1', 'Semestre 2'],
+        labels: ['Semestre 1', 'semestre 3', 'semestre 4'],
         datasets: [{
             label: 'Estudiantes inscritos',
-            data: [1097, 478],
-            backgroundColor: ['#0d9488', '#0f766e'],
+            data: [1097, 478, 1200, 1222],
+            backgroundColor: ['#0d9488', '#0f766e','#0f766e','#0f766e'],
             borderWidth: 1
         }]
     },

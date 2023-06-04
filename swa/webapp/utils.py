@@ -4,8 +4,12 @@ from .models import *
 class UniversidadForm(forms.ModelForm):
     class Meta:
         model = Universidad
-        fields = fields = ("anio_periodo", "nombreU", "numDesertados", "numGraduados", "numInscritos")
-        # Aquí se especifican los campos que se mostrarán en el formulario
+        fields = ("anio_periodo", "nombreU", "numDesertados", "numGraduados", "numInscritos")
+
+class GraficoForm(forms.ModelForm):
+    class  Meta:
+        model = Estadistica
+        fields = ("anio_dato", "tipoGrafico", "idUniversidad")
 
 def getCountDatos():
     countUni = Universidad.objects.count()

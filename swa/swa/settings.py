@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -85,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Afectacion_db',
         'USER': 'postgres',
-        'PASSWORD': 'mm20191',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432', 
     }
@@ -109,6 +108,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'webapp.Administrador'
+
+AUTHENTICATION_BACKENDS = [
+    'webapp.authentication.auth_backend.AdministradorAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_URL = '/login_Admin'
+LOGIN_REDIRECT_URL = '/gestionAdmin/'
 
 
 # Internationalization

@@ -1,4 +1,48 @@
 {% extends 'administracion/base_admin.html' %}
 {% block title %}- Eliminar Universidad{% endblock %}
 {% block content %}
+<div class="w-full p-5 bg-white rounded-xl">
+    <h2 class="text-black text-center font-bold text-3xl">Eliminar Grafico</h2>
+    <form method="post" class="flex justify-center mb-3 mt-2">
+        {% csrf_token %}
+        <button formaction="/gestionAdmin/" type="submit" title="Regresar" name="cancelar_est_btn"
+            class="bg-red-600 p-2 hover:bg-red-800 text-white font-bold rounded-md">Regresar</button>
+    </form>
+    <div class="flex w-full justify-center">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" value="form_Eliminar" name="form_El">
+            <table class="table-auto w-full text-center">
+                <thead class="text-xs text-white bg-cyan-700">
+                    <tr>
+                        <th class="p-1">Nombre de la Universidad</th>
+                        <th class="p-1">Periodo</th>
+                        <th class="p-1">Numero de Inscritos</th>
+                        <th class="p-1">Numero de Graduados</th>
+                        <th class="p-1">Numero de Desertados</th>
+                        <th class="p-1">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-xs">
+                    {%if unis %}
+                    {%for uni in unis %}
+                    <tr>
+                        <td>{{ uni.nombreU }}</td>
+                        <td>{{ uni.anio_periodo }}</td>
+                        <td>{{ uni.numInscritos }}</td>
+                        <td>{{ uni.numGraduados }}</td>
+                        <td>{{ uni.numDesertados }}</td>
+                        <td>
+                            <button value="{{uni.idUniversidad}}" name="btn_Eliminar" class=" w-10 h-min bg-red-500 p-2 hover:bg-red-700 text-white font-bold rounded-md">X</button>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                    {%else%}
+                    <td>No hay mas datos</td>
+                    {%endif%}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
 {% endblock %}

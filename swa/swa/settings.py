@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'swa.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
 
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        default='postgres://afectacion_db_user:DOev70A3ym3NlDa4N78Dls2kC8lJ6dq9@dpg-chv7j4rhp8u1cto7d5o0-a.oregon-postgres.render.com/afectacion_db',
         conn_max_age=600
     )
 }

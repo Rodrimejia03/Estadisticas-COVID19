@@ -2,7 +2,7 @@
 # exit on error
 set -o errexit
 
-python install
+python -m pip install
 
 python manage.py collectstatic --no-input
 python manage.py migrate

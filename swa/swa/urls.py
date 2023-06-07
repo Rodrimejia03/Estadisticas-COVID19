@@ -21,6 +21,9 @@ from webapp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome, name='inicio'),
+    path('2020', year2020, name='2020'),
+    path('2021', year2021, name='2021'),
+    path('2022', year2022, name='2022'),
     path('login_Admin/', login_Admin, name='login_Admin'),
     path('logout_Admin/', logout_Admin, name='logout_Admin'),
     path('gestionAdmin/', administrator, name='gestionAdmin'),

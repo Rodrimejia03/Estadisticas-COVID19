@@ -9,7 +9,7 @@ from .models import *
 
 # Create your views here.
 def welcome(request):
-    return render(request, 'index.html')
+    return render(request, 'anios/2020.html')
 
 def year2020(request):
     return render(request, 'anios/2020.html')

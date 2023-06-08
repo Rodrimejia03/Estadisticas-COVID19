@@ -20,31 +20,21 @@
             </div>
             <!-- Navigation items -->
             <div class="w-full basis-8/12 flex justify-center items-center">
-                <form method="POST" class="w-full space-y-4 flex flex-col">
-                {% csrf_token %}
+                <div class="w-full space-y-4 flex flex-col">
                     <span class="p-2 rounded-md flex justify-center text-lg text-white font-bold">
                         Seleccione un año
                     </span>
-                    <button type="submit" formaction="/" class="p-2 rounded-md hover:bg-[#1f2937] duration-300 text-lg text-center text-white font-semibold">
-                        2020
-                    </button>
-                    <button type="submit" formaction="2021" class="p-2 rounded-md hover:bg-[#1f2937] duration-300">
-                        <span class="text-lg text-center text-white font-semibold">2021</span>
-                    </button>
-                    <button type="submit" formaction="2022" class="p-2 rounded-md hover:bg-[#1f2937] duration-300">
-                        <span class="text-lg text-center text-white font-semibold">2022</span>
-                    </button>
-                </form>
+                    <a href="/" class="p-2 rounded-md hover:bg-[#1f2937] duration-300 text-lg text-center text-white font-semibold">2020</a>
+                    <a href="2021" class="p-2 rounded-md hover:bg-[#1f2937] duration-300 text-lg text-center text-white font-semibold">2020</a>
+                    <a href="2022" class="p-2 rounded-md hover:bg-[#1f2937] duration-300 text-lg text-center text-white font-semibold">2020</a>
+                </div>
             </div>
             <!-- Login button -->
             <div class="w-full basis-2/12 flex justify-center items-end">
-                <form method="POST" class="w-full flex flex-col">
-                    {% csrf_token %}
-                    <button type="submit" formaction="login_Admin/" class="my-3 p-2 text-white text-lg rounded-md hover:bg-[#1f2937] duration-300 flex items-center justify-center space-x-3">
-                        <span class="font-semibold">Iniciar sesión</span>
-                        <i class="fi fi-bs-arrow-right-to-bracket flex items-center"></i>
-                    </button>
-                </form>
+                <div class="w-full flex justify-center ">
+                    <a href="login_Admin/" class="font-semibold my-3 p-2 text-white text-lg rounded-md hover:bg-[#1f2937] duration-300 flex items-center justify-center space-x-3">Iniciar sesión
+                        <i class="fi pl-2 fi-bs-arrow-right-to-bracket flex items-center"></i></a>
+                </div>   
             </div>
         </div>
         <!-- Dashboard -->

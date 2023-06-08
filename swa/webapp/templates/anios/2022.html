@@ -1,4 +1,5 @@
 {% extends 'index.html' %}
+{% load static %}
 {% block content %}
 <div class="flex flex-col">
     <div class="mb-2.5 sm:mb-4 md:mb-6 lg:mb-8">
@@ -22,4 +23,23 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block content2 %}
+<script>
+   var datosJson = JSON.parse('{{ datos_json|safe }}');
+    var datosJson2 = JSON.parse('{{ datos_jsonTwo|safe }}');
+        var [labelsU, labelsU2, data1, data2, data3] = [[], [], [], [], []];
+        for(var i = 0; i < datosJson.length; i++){
+            labelsU[i] = datosJson[i].nombreU;
+            data1[i] = datosJson[i].numInscritos;
+            data3[i] = datosJson[i].numDesertados;
+            console.log("Nombre: " + labelsU[i] + "\ninfo inscritos: " + data1[i] + "\ninfo desertados: " + data3[i])
+        }
+        for(var i = 0; i < datosJson2.length; i++){
+            labelsU2[i] = datosJson2[i].nombreU;
+            data2[i] = datosJson2[i].numGraduados;
+            console.log("Nombre: " + labelsU2[i] + "\n info graduados: " + data2[i])
+        }
+</script>
+<script src="{% static 'webapp/graficos.js' %}"></script>
 {% endblock %}

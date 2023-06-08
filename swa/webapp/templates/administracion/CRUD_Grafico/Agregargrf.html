@@ -44,10 +44,11 @@
         {% endfor %}
     </ul>
 {% endif %}
-    <form method="post" class="flex items-end w-full">
+<a href="/gestionAdmin/" class="bg-red-600 p-2 hover:bg-red-800 text-white font-bold rounded-md">Regresar</a>
+    <!--<form method="post" class="flex items-end w-full">
         {% csrf_token %}
         <button formaction="/gestionAdmin/" type="submit" title="Regresar" name="cancelar_est_btn"
             class="bg-red-600 p-2 hover:bg-red-800 text-white font-bold rounded-md">Regresar</button>
-    </form>
+    </form>-->
 </div>
 {% endblock %}

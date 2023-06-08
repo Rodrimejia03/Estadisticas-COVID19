@@ -17,9 +17,24 @@
             <h1 class="p-4 rounded-md text-black font-bold text-center text-3xl">Area de administración de la aplicación</h2>
         </div>
         <div class="flex w-full h-min mt-8 justify-center">
-            <form method="POST" class="flex flex-col basis-1/2 p-3 shadow-sm shadow-gray-500">
-                {% csrf_token %}
+
+            <!-- Gestiones de administrador -->
+            <div class="flex flex-col basis-1/2 p-3 shadow-sm shadow-gray-500 text-center">
                 <p class="text text-center text-black font-semibold m-2">Universidades:</p>
+                <a href="Agregaruni" class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 rounded-full">Agregar</a>
+                <a href="Modificaruni" class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 rounded-full">Modificar</a>
+                <a href="Eliminaruni" class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 rounded-full">Eliminar</a>
+            </div>
+            <div class="flex flex-col basis-1/2 p-3 shadow-sm shadow-gray-500 text-center">
+                <p class="text text-center text-black font-semibold m-2">Graficos:</p>
+                <a href="Agregargrf" class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 rounded-full">Agregar</a>
+                <a href="Modificargrf" class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 rounded-full">Modificar</a>
+                <a href="Eliminargrf" class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 rounded-full">Eliminar</a>
+            </div>
+           <!--
+<form method="POST" class="flex flex-col basis-1/2 p-3 shadow-sm shadow-gray-500">
+                {% csrf_token %}
+                
                 <button type="submit" formaction="Agregaruni"
                     class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 rounded-full">Agregar
                     </button>
@@ -43,6 +58,7 @@
                     class="bg-cyan-500 m-2 hover:bg-cyan-700 text-white font-bold py-2 rounded-full">Eliminar
                     </button>
             </form>
+           --> 
         </div>
         <div class="flex flex-row justify-center w-full h-full">
             <form method="POST">

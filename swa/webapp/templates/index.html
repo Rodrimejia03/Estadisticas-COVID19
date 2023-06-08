@@ -25,7 +25,7 @@
                     <span class="p-2 rounded-md flex justify-center text-lg text-white font-bold">
                         Seleccione un año
                     </span>
-                    <button type="submit" formaction="2020" class="p-2 rounded-md hover:bg-[#1f2937] duration-300 text-lg text-center text-white font-semibold">
+                    <button type="submit" formaction="/" class="p-2 rounded-md hover:bg-[#1f2937] duration-300 text-lg text-center text-white font-semibold">
                         2020
                     </button>
                     <button type="submit" formaction="2021" class="p-2 rounded-md hover:bg-[#1f2937] duration-300">
@@ -81,8 +81,7 @@
             </footer>
         </div>
     </div>
-
-    <script src="{% static 'webapp/graficos.js' %}"></script>
+    {% block content2 %}
+    {% endblock %}
 </body>
-
 </html>

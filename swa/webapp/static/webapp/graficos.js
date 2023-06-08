@@ -5,11 +5,11 @@ const ctx2 = document.getElementById('myChart2');
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Semestre 1', 'semestre 3', 'semestre 4'],
+        labels: labelsU,
         datasets: [{
             label: 'Estudiantes inscritos',
-            data: [1097, 478, 1200, 1222],
-            backgroundColor: ['#0d9488', '#0f766e','#0f766e','#0f766e'],
+            data: data1,
+            backgroundColor: '#0d9488',
             borderWidth: 1
         }]
     },
@@ -18,51 +18,60 @@ new Chart(ctx, {
             y: {
                 beginAtZero: true
             }
-        }
+        },  
     },
 });
 
 new Chart(ctx1, {
     type: 'pie',
     data: {
-        labels: ['Semestre 1', 'Semestre 2'],
+        labels: labelsU2,
         datasets: [{
-            label: 'Estudiantes desertados',
-            data: [300, 50],
-            backgroundColor: [
-                '#0d9488',
-                '#0f766e',
-            ],
+            label: 'Estudiantes Graduados',
+            data: data2,
+            backgroundColor: ColoresRandom(datosJson2),
             hoverOffset: 4
-        }]
+        }],    
     },
 });
 
-const xValues = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio']
 new Chart(ctx2, {
-    type: 'line',
+    type: 'bar',
     data: {
-        labels: xValues,
-        datasets: [
-            {
-                label: 'Semestre 1',
-                data: [1860, 1740, 1700, 1400, 1070, 1110],
-                backgroundColor: '#0f766e',
-                borderColor: '#0f766e',
-                fill: false
-            },
-            {
-                label: 'Semestre 2',
-                data: [1500, 1850, 1300, 1600, 1000, 700],
-                backgroundColor: '#115e59',
-                borderColor: '#115e59',
-                fill: false
-            }
-        ]
+        labels: labelsU,
+        datasets: [{
+            label: 'Estudiantes Desertados',
+            data: data3,
+            backgroundColor: '#0d9488',
+            borderWidth: 1
+        }]
     },
     options: {
-        legend: {
-            display: false
+        indexAxis: 'y',
+        scales: {
+            y: {
+                beginAtZero: true
+            }
         },
     },
 });
+
+function ColoresRandom(colores) {
+    var colors = [];
+    var totalColors = colores.length;
+    var startColor = { r: 31, g: 231, b: 213 };
+    var endColor = { r: 35, g: 82, b: 78 };
+
+    for (var i = 0; i < totalColors; i++) {
+      var color = interpolar(startColor, endColor, i, totalColors);
+      colors.push(color);
+    }
+  
+    return colors;
+  }
+  function interpolar(startColor, endColor, step, totalSteps) {
+    var r = Math.round(startColor.r + (endColor.r - startColor.r) * step / totalSteps);
+    var g = Math.round(startColor.g + (endColor.g - startColor.g) * step / totalSteps);
+    var b = Math.round(startColor.b + (endColor.b - startColor.b) * step / totalSteps);
+    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+  }

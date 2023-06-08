@@ -6,19 +6,32 @@ from django.contrib.auth import logout
 from webapp.authentication.auth_backend import AdministradorAuthBackend
 from .utils import *
 from .models import *
+import json
 
 # Create your views here.
 def welcome(request):
-    return render(request, 'anios/2020.html')
+    registros = getDatosEstadisticas(2020, 5,'Barras')
+    registros2 = getDatosEstadisticas(2020, 5, 'Pastel')
+    datos_json = json.dumps(registros)
+    datos_json2 = json.dumps(registros2)
+    return render(request, 'anios/2020.html', {'datos_json': datos_json, 'datos_jsonTwo': datos_json2})
 
-def year2020(request):
-    return render(request, 'anios/2020.html')
+#def year2020(request):
+#   return render(request, 'anios/2020.html')
 
 def year2021(request):
-    return render(request, 'anios/2021.html')
+    registros = getDatosEstadisticas(2021, 5,'Barras')
+    registros2 = getDatosEstadisticas(2021, 5, 'Pastel')
+    datos_json = json.dumps(registros)
+    datos_json2 = json.dumps(registros2)
+    return render(request, 'anios/2021.html', {'datos_json': datos_json, 'datos_jsonTwo': datos_json2})
 
 def year2022(request):
-    return render(request, 'anios/2022.html')
+    registros = getDatosEstadisticas(2022, 5,'Barras')
+    registros2 = getDatosEstadisticas(2022, 5, 'Pastel')
+    datos_json = json.dumps(registros)
+    datos_json2 = json.dumps(registros2)
+    return render(request, 'anios/2022.html', {'datos_json': datos_json, 'datos_jsonTwo': datos_json2})
 
 def login_Admin(request):
     if request.method == 'POST' and request.POST.get('login_ad') == 'login_1':
@@ -44,7 +57,7 @@ def administrator(request):
 
 @login_required
 def administrator_AgGrf(request):
-    unis = Universidad.objects.all()
+    unis = Universidad.objects.all().order_by('anio_periodo','idUniversidad')
     if request.method == 'POST' and request.POST.get('form_id') == 'form_AgregarGrf':
         temp_estadistica = Estadistica()
         temp_1 = request.POST.get('anio_input')
@@ -64,8 +77,8 @@ def administrator_AgGrf(request):
 
 @login_required
 def administrator_ModGrf(request):
-    grafis = Estadistica.objects.all()
-    unis = Universidad.objects.all()
+    grafis = Estadistica.objects.all().order_by('anio_dato', 'idEstadistica')
+    unis = Universidad.objects.all().order_by('anio_periodo','idUniversidad')
     form_deshabilitado = 1
     form_modificar = GraficoForm(initial={})
     response =  render(request, 'administracion/CRUD_Grafico/Modificargrf.html', {'grafis': grafis, 'unis': unis, 'form_deshabilitado': form_deshabilitado})
@@ -95,7 +108,7 @@ def administrator_ModGrf(request):
 
 @login_required
 def administrator_ElGrf(request):
-    grafis = Estadistica.objects.all().order_by('idEstadistica')
+    grafis = Estadistica.objects.all().order_by('anio_dato', 'idEstadistica', 'tipoGrafico')
     if request.method == 'POST' and request.POST.get('form_El') == 'form_Eliminar':
         temp_id = request.POST.get('btn_Eliminar')
         grafi_Eliminar = Estadistica.objects.get(idEstadistica=temp_id)
@@ -120,7 +133,7 @@ def administrator_AgUni(request):
 
 @login_required
 def administrator_ModUni(request):
-    unis = Universidad.objects.all()
+    unis = Universidad.objects.all().order_by('anio_periodo', 'idUniversidad')
     form_deshabilitado = 1
     form_modificar = UniversidadForm(initial={})
     response =  render(request, 'administracion/CRUD_Universidad/Modificaruni.html', {'unis': unis, 'form_deshabilitado': form_deshabilitado})
@@ -154,7 +167,7 @@ def administrator_ModUni(request):
 
 @login_required
 def administrator_ElUni(request):
-    unis = Universidad.objects.all().order_by('idUniversidad')
+    unis = Universidad.objects.all().order_by('anio_periodo', 'idUniversidad')
     if request.method == 'POST' and request.POST.get('form_El') == 'form_Eliminar':
         temp_id = request.POST.get('btn_Eliminar')
         uni_Eliminar = Universidad.objects.get(idUniversidad=temp_id)

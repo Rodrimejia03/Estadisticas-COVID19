@@ -23,3 +23,19 @@ def getCountDatos():
     }
 
     return dic_datos
+
+def getDatosEstadisticas(anio, cant, tG):
+    datos = Estadistica.objects.filter(anio_dato=anio, tipoGrafico=tG)[:cant]
+    if datos:
+       registros = []
+       for dato in datos:
+        registro = {
+            'anio_dato': dato.anio_dato,
+            'tipoGrafico': dato.tipoGrafico,
+            'nombreU': dato.idUniversidad.nombreU,
+            'numInscritos': dato.idUniversidad.numInscritos,
+            'numGraduados': dato.idUniversidad.numGraduados,
+            'numDesertados': dato.idUniversidad.numDesertados
+        }
+        registros.append(registro)
+    return registros

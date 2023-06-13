@@ -17,6 +17,7 @@ from django import views
 from django.contrib import admin
 from django.urls import path
 from webapp.views import *
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,3 +35,5 @@ urlpatterns = [
     path('gestionAdmin/Modificaruni', administrator_ModUni, name='Modificaruni'),
     path('gestionAdmin/Eliminaruni', administrator_ElUni, name='Eliminaruni'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
